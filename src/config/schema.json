@@ -72,7 +72,7 @@
         "type": "wysiwyg",
         "name": "Description",
         "validations": ["nullable", "string"],
-        "values": null,
+        "values": "",
         "ui": null,
         "multiple": false,
         "multiple_min": null,

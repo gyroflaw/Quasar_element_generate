@@ -4,11 +4,10 @@
       <q-card-section class="q-pa-lg">
         <h6 class="card_title">Insert {{ item }}</h6>
         <div
-          v-for="field in schemaFieldsByKey(item)"
+          v-for="(field, j) in schemaFieldsByKey(item)"
           :key="field.key"
           class="q-my-xs"
         >
-          <!-- <div>{{ field.type }}</div> -->
           <div class="row justify-center">
             <div
               v-if="field.type === 'string'"
@@ -16,7 +15,7 @@
             >
               <q-input
                 outlined
-                v-model="text"
+                v-model="schema[schemaIndex(item)].fields[j].values"
                 :label="field.name"
                 :placeholder="field.placeholder"
               />
@@ -35,7 +34,7 @@
               <q-input
                 type="textarea"
                 outlined
-                v-model="text"
+                v-model="schema[schemaIndex(item)].fields[j].values"
                 :label="field.name"
                 :placeholder="field.placeholder"
                 :autogrow="true"
@@ -54,7 +53,7 @@
             >
               <q-input
                 outlined
-                v-model="text"
+                v-model="schema[schemaIndex(item)].fields[j].values"
                 prefix="https://"
                 :placeholder="field.placeholder"
               ></q-input>
@@ -70,7 +69,10 @@
               v-if="field.type === 'wysiwyg'"
               :class="field.ui?.col ? 'col-' + field.ui?.col : 'col-12'"
             >
-              <q-editor v-model="text" min-height="5rem" />
+              <q-editor
+                v-model="schema[schemaIndex(item)].fields[j].values"
+                min-height="5rem"
+              />
               <p class="text_desc">
                 {{
                   field.description ? '*Description: ' + field.description : ''
@@ -85,7 +87,7 @@
             >
               <q-input
                 outlined
-                v-model="color"
+                v-model="schema[schemaIndex(item)].fields[j].values"
                 class="my-input"
                 :placeholder="field.placeholder"
                 :label="field.name"
@@ -97,7 +99,9 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-color v-model="color" />
+                      <q-color
+                        v-model="schema[schemaIndex(item)].fields[j].values"
+                      />
                     </q-popup-proxy>
                   </q-icon>
                 </template>
@@ -113,7 +117,7 @@
               :class="field.ui?.col ? 'col-' + field.ui?.col : 'col-12'"
             >
               <q-toggle
-                v-model="third"
+                v-model="schema[schemaIndex(item)].fields[j].values"
                 checked-icon="check"
                 color="green"
                 unchecked-icon="clear"
@@ -133,6 +137,7 @@
   </div>
   <q-card v-else>
     <q-card-section>
+      <!-- <q-input v-model="schemaStore.temp"></q-input> -->
       <h6 class="card_title">Please input any fields</h6>
     </q-card-section>
   </q-card>
@@ -148,16 +153,30 @@ export default defineComponent({
   setup() {
     const schemaStore = useSchemaStore();
 
-    const { schemaFieldsByKey, selectedItems, schema } =
+    const { schemaFieldsByKey, selectedItems, schema, temp } =
       storeToRefs(schemaStore);
 
     const text = ref('');
     const color = ref('');
     const third = ref(false);
 
-    return { schemaFieldsByKey, selectedItems, schema, text, color, third };
+    return {
+      schemaStore,
+      schemaFieldsByKey,
+      selectedItems,
+      schema,
+      text,
+      color,
+      third,
+      temp,
+    };
   },
-  computed: {},
+  methods: {
+    schemaIndex(item: string) {
+      const keys = this.schema.map((sch) => sch.key);
+      return keys.indexOf(item);
+    },
+  },
 });
 </script>
 <style scoped lang="scss">

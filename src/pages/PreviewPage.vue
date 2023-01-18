@@ -4,19 +4,24 @@
     <div class="col-8 col-sm-8 q-px-sm">
       <main-board-component></main-board-component>
     </div>
-    <next-btn-component class="next_btn" />
+    <q-btn
+      color="primary"
+      round
+      icon="eco"
+      padding="lg"
+      class="next_btn"
+    ></q-btn>
   </q-page>
 </template>
 
 <script lang="ts">
 import ToolboxComponent from 'src/components/ToolboxComponent.vue';
 import MainBoardComponent from 'src/components/MainBoardComponent.vue';
-import NextBtnComponent from 'src/components/NextBtnComponent.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'InsertPage',
-  components: { ToolboxComponent, MainBoardComponent, NextBtnComponent },
+  components: { ToolboxComponent, MainBoardComponent },
 });
 </script>
 <style scoped lang="scss">

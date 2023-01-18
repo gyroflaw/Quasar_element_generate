@@ -1,24 +1,24 @@
 <template>
-  <q-card>
-    <q-card-section>
-      <h6 class="card_title">Toolbox</h6>
-    </q-card-section>
-    <q-separator />
-    <q-card-actions vertical>
-      <div v-for="item in schema" :key="item.key">
-        <q-checkbox
-          v-model="selectedItems"
-          :label="'Insert ' + item.name"
-          color="cyan"
-          :val="item.key"
-        />
-      </div>
-    </q-card-actions>
-  </q-card>
+  <q-btn color="primary" round icon="eco" padding="lg">
+    <q-menu transition-show="rotate" transition-hide="rotate">
+      <q-list style="min-width: 300px">
+        <div v-for="item in schema" :key="item.key">
+          <q-item>
+            <q-checkbox
+              v-model="selectedItems"
+              :label="'Insert ' + item.name"
+              color="cyan"
+              :val="item.key"
+            />
+          </q-item>
+        </div>
+      </q-list>
+    </q-menu>
+  </q-btn>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useSchemaStore } from 'src/stores/schema';
 import { storeToRefs } from 'pinia';
 

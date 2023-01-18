@@ -5,6 +5,7 @@ export const useSchemaStore = defineStore('schema', {
   state: () => ({
     schema: Schema,
     selectedItems: [],
+    temp: 'abckdsd',
   }),
 
   getters: {
