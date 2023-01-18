@@ -2,7 +2,7 @@
   <q-btn
     color="primary"
     round
-    icon="preview"
+    icon="undo"
     padding="lg"
     @click="handleClick()"
   ></q-btn>
@@ -13,14 +13,14 @@ import { defineComponent } from 'vue';
 import { useSchemaStore } from 'src/stores/schema';
 
 export default defineComponent({
-  name: 'NextBtnComponent',
+  name: 'BackBtnComponent',
   setup() {
     const schemaStore = useSchemaStore();
     return { schemaStore };
   },
   methods: {
     handleClick() {
-      this.$router.push('/preview');
+      this.$router.push('/insert');
     },
   },
 });

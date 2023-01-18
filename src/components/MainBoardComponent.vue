@@ -144,7 +144,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useSchemaStore } from 'src/stores/schema';
 import { storeToRefs } from 'pinia';
 
@@ -152,23 +152,14 @@ export default defineComponent({
   name: 'MainBoardComponent',
   setup() {
     const schemaStore = useSchemaStore();
-
-    const { schemaFieldsByKey, selectedItems, schema, temp } =
+    const { schemaFieldsByKey, selectedItems, schema } =
       storeToRefs(schemaStore);
-
-    const text = ref('');
-    const color = ref('');
-    const third = ref(false);
 
     return {
       schemaStore,
       schemaFieldsByKey,
       selectedItems,
       schema,
-      text,
-      color,
-      third,
-      temp,
     };
   },
   methods: {

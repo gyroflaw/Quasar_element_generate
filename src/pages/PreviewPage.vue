@@ -1,36 +1,79 @@
 <template>
+  <back-btn-component class="back_btn"></back-btn-component>
   <q-page class="row items-center justify-center">
-    <toolbox-component class="toolbox_btn"></toolbox-component>
-    <div class="col-8 col-sm-8 q-px-sm">
-      <main-board-component></main-board-component>
+    <div class="col-10 col-md-6" v-if="selectedItems.includes('Image')">
+      <image-preview-component class="q-ma-sm"></image-preview-component>
     </div>
-    <q-btn
-      color="primary"
-      round
-      icon="eco"
-      padding="lg"
-      class="next_btn"
-    ></q-btn>
+    <div class="col-10 col-md-6">
+      <text-preview-component
+        class="q-ma-sm"
+        v-if="selectedItems.includes('Text')"
+      ></text-preview-component>
+      <fact-preview-component
+        class="q-ma-sm"
+        v-if="selectedItems.includes('TextBox')"
+      ></fact-preview-component>
+      <quote-preview-component
+        class="q-ma-sm"
+        v-if="selectedItems.includes('Quote')"
+      ></quote-preview-component>
+    </div>
   </q-page>
+  <layout-btn-component class="layout_btn"></layout-btn-component>
 </template>
 
 <script lang="ts">
-import ToolboxComponent from 'src/components/ToolboxComponent.vue';
-import MainBoardComponent from 'src/components/MainBoardComponent.vue';
 import { defineComponent } from 'vue';
+import { useSchemaStore } from 'src/stores/schema';
+import { storeToRefs } from 'pinia';
+
+import ImagePreviewComponent from 'src/components/PreviewComponents/ImagePreviewComponent.vue';
+import TextPreviewComponent from 'src/components/PreviewComponents/TextPreviewComponent.vue';
+import FactPreviewComponent from 'src/components/PreviewComponents/FactPreviewComponent.vue';
+import QuotePreviewComponent from 'src/components/PreviewComponents/QuotePreviewComponent.vue';
+
+import BackBtnComponent from 'src/components/BackBtnComponent.vue';
+import LayoutBtnComponent from 'src/components/LayoutBtnComponent.vue';
 
 export default defineComponent({
-  name: 'InsertPage',
-  components: { ToolboxComponent, MainBoardComponent },
+  name: 'PerviewPage',
+  components: {
+    ImagePreviewComponent,
+    TextPreviewComponent,
+    FactPreviewComponent,
+    QuotePreviewComponent,
+    BackBtnComponent,
+    LayoutBtnComponent,
+  },
+  setup() {
+    const schemaStore = useSchemaStore();
+    const { schema, valuesByKey, selectedItems } = storeToRefs(schemaStore);
+    return { schema, valuesByKey, selectedItems };
+  },
+  computed: {
+    getImageUri(): string {
+      return (
+        'https://' +
+        this.valuesByKey('Image').filter((obj) => obj.fieldname === 'url')[0]
+          .fieldvalue
+      );
+    },
+    getImageCaption() {
+      return this.valuesByKey('Image').filter(
+        (obj) => obj.fieldname === 'caption'
+      )[0].fieldvalue;
+    },
+  },
 });
 </script>
 <style scoped lang="scss">
-.toolbox_btn {
+.back_btn {
   position: fixed;
   bottom: 30px;
   left: 30px;
+  z-index: 99;
 }
-.next_btn {
+.layout_btn {
   position: fixed;
   bottom: 30px;
   right: 30px;

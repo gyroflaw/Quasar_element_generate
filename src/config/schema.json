@@ -104,7 +104,7 @@
         "default": "0",
         "expression": null,
         "validations": ["required"],
-        "values": null,
+        "values": false,
         "ui": {
           "col": 6
         },

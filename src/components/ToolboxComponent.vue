@@ -1,5 +1,5 @@
 <template>
-  <q-btn color="primary" round icon="eco" padding="lg">
+  <q-btn color="primary" round icon="assignment_add" padding="lg">
     <q-menu transition-show="rotate" transition-hide="rotate">
       <q-list style="min-width: 300px">
         <div v-for="item in schema" :key="item.key">
