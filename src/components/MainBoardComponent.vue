@@ -139,7 +139,11 @@
   <q-card v-else>
     <q-card-section>
       <div class="flex justify-center">
-        <q-icon name="speaker_notes_off" size="lg" class="text-center"></q-icon>
+        <q-icon
+          name="speaker_notes_off"
+          size="lg"
+          class="text-center q-mt-lg"
+        ></q-icon>
       </div>
 
       <h6 class="text-center">There is any Element</h6>
