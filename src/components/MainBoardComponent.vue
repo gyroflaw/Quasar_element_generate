@@ -137,8 +137,12 @@
   </div>
   <q-card v-else>
     <q-card-section>
-      <!-- <q-input v-model="schemaStore.temp"></q-input> -->
-      <h6 class="card_title">Please input any fields</h6>
+      <div class="flex justify-center">
+        <q-icon name="speaker_notes_off" size="lg" class="text-center"></q-icon>
+      </div>
+
+      <h6 class="text-center">There is any Element</h6>
+      <h6 class="text-center">Please add new element and Insert in it</h6>
     </q-card-section>
   </q-card>
 </template>

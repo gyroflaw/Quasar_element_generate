@@ -1,24 +1,12 @@
 import { defineStore } from 'pinia';
-import Schema from '../config/schema.json';
 
-export const useSchemaStore = defineStore('schema', {
+export const useLayoutStore = defineStore('layout', {
   state: () => ({
-    schema: Schema,
-    selectedItems: <string[]>[],
+    layouts: [
+      { value: 'layout1', label: 'Image Top' },
+      { value: 'layout2', label: 'Image Left' },
+      { value: 'layout3', label: 'Image Right' },
+    ],
+    selectedLayout: 'layout2',
   }),
-
-  getters: {
-    schemaFieldsByKey: (state) => (key: string) =>
-      state.schema.filter((sch) => sch.key === key)[0].fields,
-
-    valuesByKey: (state) => (key: string) => {
-      const fields = state.schema.filter((sch) => sch.key === key)[0].fields;
-      return fields.map((field) => ({
-        fieldname: field.key,
-        fieldvalue: field.values,
-      }));
-    },
-  },
-
-  actions: {},
 });

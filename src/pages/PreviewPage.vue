@@ -19,7 +19,6 @@
       ></quote-preview-component>
     </div>
   </q-page>
-  <layout-btn-component class="layout_btn"></layout-btn-component>
 </template>
 
 <script lang="ts">
@@ -33,7 +32,6 @@ import FactPreviewComponent from 'src/components/PreviewComponents/FactPreviewCo
 import QuotePreviewComponent from 'src/components/PreviewComponents/QuotePreviewComponent.vue';
 
 import BackBtnComponent from 'src/components/BackBtnComponent.vue';
-import LayoutBtnComponent from 'src/components/LayoutBtnComponent.vue';
 
 export default defineComponent({
   name: 'PerviewPage',
@@ -43,7 +41,6 @@ export default defineComponent({
     FactPreviewComponent,
     QuotePreviewComponent,
     BackBtnComponent,
-    LayoutBtnComponent,
   },
   setup() {
     const schemaStore = useSchemaStore();
