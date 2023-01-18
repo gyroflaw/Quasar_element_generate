@@ -1,7 +1,7 @@
 {
-  "name": "my_first_quasar_pro",
+  "name": "quasar",
   "version": "0.0.1",
-  "description": "This is Quasar project",
+  "description": "This is Quasar project generating elements dynamically based on Schema.",
   "productName": "quasar",
   "author": "Roman Phoon <phoonroman@gmail.com>",
   "private": true,
