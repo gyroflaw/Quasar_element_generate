@@ -91,6 +91,7 @@
                 class="my-input"
                 :placeholder="field.placeholder"
                 :label="field.name"
+                :rules="['anyColor']"
               >
                 <template v-slot:append>
                   <q-icon name="colorize" class="cursor-pointer">
